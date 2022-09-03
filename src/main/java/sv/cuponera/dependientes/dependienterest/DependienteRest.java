@@ -30,7 +30,7 @@ public class DependienteRest {
 			 return Response.status(400).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Usuario y contraseña incorrecto\"}").build();
 		 }
 		 dependiente.setEmpresa(dependienteDAO.obtenerEmpresa(dependiente.getIdEmpresa()));
-		 
+		 dependiente.setPass("");
 		 if(!dependiente.getRol().equals("Dependiente") && !dependiente.getRol().equals("AdministradorE")) {
 			 return Response.status(400).header("Access-Control-Allow-Origin", "*").entity("{\"error\":\"Usuario no pertenece a un dependiente de empresa\"}").build();
 		 }
