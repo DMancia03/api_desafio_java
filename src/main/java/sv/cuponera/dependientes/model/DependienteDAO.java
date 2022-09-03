@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import sv.edu.udb.model.Concepto;
+import sv.cuponera.dependientes.utils.*;
 
 public class DependienteDAO extends AppConnection {
 	//Listar los objetos de dependiente
@@ -38,7 +38,7 @@ public class DependienteDAO extends AppConnection {
 	public Usuario login(String username, String pass) throws SQLException{
 
 		Usuario dependiente = null;
-
+		pass = cesarCipher.cipher(pass);
 		connect();
 		pstmt = conn.prepareStatement("SELECT idUsuario, Username, usuarios.Nombre, Apellidos, Pass, Email, roles.Nombre, Empresa_IdEmpresa, DUI FROM usuarios INNER JOIN roles ON usuarios.Roles_idRoles = roles.idRoles WHERE Username = ? AND Pass = ?");
 		pstmt.setString(1, username);
@@ -250,13 +250,30 @@ public class DependienteDAO extends AppConnection {
 		return oferta;
 	}
 	
-	public void canjearCupon(String codigo, String dui) throws SQLException {
+	public void canjearCupon(String codigo, String dui, String empresa) throws SQLException {
 		connect();
 		//pstmt = conn.prepareStatement("SELECT * FROM cupon WHERE CodigoCupon = ? AND Usuarios_idUsuario = (SELECT usuarios.idUsuario FROM usuarios WHERE DUI = ?)");
-		pstmt = conn.prepareStatement("UPDATE cupon SET Estado = 'Canjeado', fechUso = CONCAT(YEAR(NOW()), '-', MONTH(NOW()), '-', DAY(NOW())) WHERE CodigoCupon = ? AND Usuarios_idUsuario = (SELECT usuarios.idUsuario FROM usuarios WHERE DUI = ?)");
+		pstmt = conn.prepareStatement("UPDATE cupon SET Estado = 'Canjeado', fechUso = CONCAT(YEAR(NOW()), '-', MONTH(NOW()), '-', DAY(NOW())) WHERE CodigoCupon = ? AND Usuarios_idUsuario = (SELECT usuarios.idUsuario FROM usuarios WHERE DUI = ?) AND Oferta_idOferta IN (SELECT oferta.idOferta FROM oferta WHERE oferta.Empresa_IdEmpresa = ?)");
 		pstmt.setString(1, codigo);
 		pstmt.setString(2, dui);
+		pstmt.setString(3, empresa);
 		pstmt.execute();
 		close();
+	}
+	
+	//Obtener contraseña
+	public String getPassword(String codigo) throws SQLException {
+		connect();
+		String pass=""; 
+		pstmt = conn.prepareStatement("SELECT Pass FROM usuarios WHERE idUsuario = ?"); 
+		pstmt.setString(1, codigo);
+		resultSet = pstmt.executeQuery(); 
+		while(resultSet.next()) {
+			pass= resultSet.getString("Pass");
+			close();
+			return pass; 
+		}
+		close();
+		return pass; 
 	}
 }

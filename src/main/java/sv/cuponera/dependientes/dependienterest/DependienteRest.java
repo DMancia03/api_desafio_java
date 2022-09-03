@@ -18,13 +18,6 @@ import java.util.List;
 @Path("dependiente")
 public class DependienteRest {
 	DependienteDAO dependienteDAO = new DependienteDAO();
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response listarConceptos() throws SQLException{
-
-	 List<Usuario> dependientes = dependienteDAO.listarDependiente();
-	 return Response.status(200).entity(dependientes).build();
-	}
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -119,7 +112,7 @@ public class DependienteRest {
 					.entity("{\"error\":\"El cupón " + codigo + " ya esta canjeado\"}")
 					.build();
 		}else if(estadoCupon.equals("Disponible")) {
-			dependienteDAO.canjearCupon(codigo, dui);
+			dependienteDAO.canjearCupon(codigo, dui, empresa);
 			
 			List<Cupon> cupones = dependienteDAO.obtenerCupones(codigo, empresa);
 			 

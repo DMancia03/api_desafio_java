@@ -142,12 +142,12 @@ function setCupon(cupones){
     let html = '';
     $.each(cupones, function(index, cupon){
         html += `
-    <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col rounded-md shadow-md">
+    <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col rounded-md shadow-md w-fit">
                         <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center flex-shrink-0">
                             <img
                               src="https://cdn-icons-png.flaticon.com/512/2851/2851418.png"/>
                         </div>
-                        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0 w-fit">
                             <h1 class="text-black text-2xl title-font font-bold mb-2">${cupon.oferta.nombre}</h1>
                             <p class="leading-relaxed text-base">${cupon.oferta.descripcion}</p>
                     

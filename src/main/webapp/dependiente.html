@@ -28,12 +28,19 @@
             </div>
         </nav>
     </header>
-    <section class=" bg-white" style="height:95vh;">
+    <section id="usuario-data" class=" bg-white" style="height:95vh;">
         <div class="max-w-7xl px-5 py-12 flex flex-col space-y-5 w-full h-full items-center justify-center mx-auto">
             <!-- Datos personales -->
-            <div id="usuario-data" class="flex h-full w-full  rounded-md shadow-md" >
+            <div  class="flex h-full w-full  rounded-md shadow-md" >
 				<div class="w-full  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700" >
-				    <div class="flex flex-col items-center pb-10">
+				    <div class="flex justify-end px-4 pt-4">
+                        <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdown" class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center pb-10">
 				        <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
 				        <h1 class="mb-1 text-xl font-medium text-gray-900 dark:text-white" id="nombre-usuario">--------</h1>
 				        <h3 class="text-gray-500 dark:text-gray-400" id="empresa-usuario">------------</h3>
@@ -42,16 +49,15 @@
 				    </div>
 				</div>
 			</div>
+        </div>
+    </section>
 
-            <!-- Cupon -->
-            <section id="cupon" class="text-gray-600 body-font hidden">
-                <div class="container px-5 my-5 mx-auto" id="cupones">
-                    <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col rounded-md shadow-md">
-                        <p>No hay cupones buscados</p>
-                    </div>
-                </div>
-            </section>
-            
+     <!-- Cupon -->
+    <section id="cupon" class="text-gray-600 body-font hidden p-5">
+        <div class="container px-5 my-5 mx-auto" id="cupones">
+            <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col rounded-md shadow-md">
+                <p>No hay cupones buscados</p>
+            </div>
         </div>
     </section>
 
