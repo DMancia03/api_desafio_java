@@ -143,7 +143,7 @@ function setCupon(cupones){
     $.each(cupones, function(index, cupon){
         let boton = '';
         if(cupon.estado == "Disponible"){
-            boton = '<a class="mt-3 text-indigo-500 inline-flex items-center canjear-cupon" codigo="${cupon.codigoCupon}" style="cursor:pointer;">Canjear cupón</a>';
+            boton = '<a class="mt-3 text-indigo-500 inline-flex items-center canjear-cupon" codigo="'+cupon.codigoCupon+'" style="cursor:pointer;">Canjear cupón</a>';
         }
         html += `
     <div class="p-5 bg-white flex items-center mx-auto border-b  mb-10 border-gray-200 rounded-lg sm:flex-row flex-col rounded-md shadow-md w-fit">
